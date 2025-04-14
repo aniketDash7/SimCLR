@@ -81,11 +81,7 @@ class ClassificationModel(nn.Module):
 - **Problem**: The final `fc` layer in ResNet was replaced by `nn.Identity()` during SimCLR, causing an error when trying to access `fc.in_features`.
 - **Solution**: Used a dummy input to the backbone to infer the output feature size dynamically for the classifier layer.
 
-#### **2. Incorrect loading of SimCLR model**
-- **Problem**: Instead of using the recommended method to load the model (`simclr_model = torch.load(...)`), a custom `SimCLR` class was re-instantiated and state_dict loaded.
-- **Solution**: This was actually fine as long as the structure of the model matched exactly. Just ensured weights were loaded using `weights_only=True`.
-
-#### **3. Projection head interference in downstream**
+#### **2. Projection head interference in downstream**
 - **Problem**: Needed to ensure the classifier didn’t accidentally include the projection head from SimCLR.
 - **Solution**: Separated and extracted the encoder-only part (`backbone`) from the SimCLR model.
 
