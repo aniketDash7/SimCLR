@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data & Models
+data/
+*.pth
+*.gif
+*.npy
+
+# IDE
+.vscode/
+.idea/
