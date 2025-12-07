@@ -10,7 +10,6 @@ from src.model import SimCLR
 
 # --- Configuration ---
 MODEL_PATH = "finetuned_simclr_ucmerced.pth" # Local path
-# TODO: Replace with your direct download link (Dropbox/Google Drive/HuggingFace)
 MODEL_URL = "https://huggingface.co/aniketDS/SimCLR_finetuned/resolve/main/finetuned_ds_state_dict.pth" 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 CLASSES = [
@@ -96,11 +95,14 @@ if uploaded_model:
         f.write(uploaded_model.getbuffer())
     model = load_model("temp_model.pth")
     st.sidebar.success("Custom model loaded!")
-elif os.path.exists(MODEL_PATH):
-    model = load_model(MODEL_PATH)
-    st.sidebar.success(f"Loaded default model: {MODEL_PATH}")
 else:
-    st.sidebar.warning("No model found. Please upload .pth file.")
+    # Attempt to load default model (will download if missing)
+    model = load_model(MODEL_PATH)
+    
+    if model:
+        st.sidebar.success(f"Loaded default model from URL")
+    else:
+        st.sidebar.warning("No model found. Please upload .pth file.")
 
 # Main Interface
 col1, col2 = st.columns(2)
