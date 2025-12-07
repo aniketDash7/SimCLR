@@ -11,7 +11,7 @@ from src.model import SimCLR
 # --- Configuration ---
 MODEL_PATH = "finetuned_simclr_ucmerced.pth" # Local path
 # TODO: Replace with your direct download link (Dropbox/Google Drive/HuggingFace)
-MODEL_URL = "https://your-model-url-here.com/finetuned_simclr_ucmerced.pth" 
+MODEL_URL = "https://huggingface.co/aniketDS/SimCLR_finetuned/resolve/main/finetuned_ds_state_dict.pth" 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 CLASSES = [
     'agricultural', 'airplane', 'baseballdiamond', 'beach', 'buildings', 
