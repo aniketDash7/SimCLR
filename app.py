@@ -20,6 +20,19 @@ CLASSES = [
     'storagetanks', 'tenniscourt'
 ]
 
+# --- Model Definition (Must match training) ---
+class FineTuneModel(nn.Module):
+    def __init__(self, backbone, num_classes):
+        super(FineTuneModel, self).__init__()
+        self.backbone = backbone
+        num_ftrs = 2048 
+        self.classifier = nn.Linear(num_ftrs, num_classes)
+        
+    def forward(self, x):
+        x = self.backbone(x)
+        x = self.classifier(x)
+        return x
+
 # --- Helper Functions ---
 def download_model(url, dest_path):
     if not os.path.exists(dest_path):
