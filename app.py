@@ -92,9 +92,9 @@ def preprocess_image(image):
     return transform(image).unsqueeze(0) # Add batch dim
 
 # --- UI Layout ---
-st.set_page_config(page_title="Land Use Classifier", page_icon="🌍")
+st.set_page_config(page_title="Land Cover Classifier", page_icon="🌍")
 
-st.title("🌍 Land Use Classification")
+st.title("🌍 Land Cover Classification")
 st.markdown("Powered by **SimCLR (ResNet-101)** | Fine-tuned on **UC Merced**")
 
 # Sidebar for Model
